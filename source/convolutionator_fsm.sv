@@ -1,89 +1,14 @@
-/*
-   
-   Author:  Pablo Daniel Perez Montes
-   Email:   TAE2024.7@cinvestav.mx
-   Date:    05/05/2024
-   
-   Module Name:
-      convolucion_p2_fsm
-   
-   Description:
-      This module has the control for the datapath in the convolucion_p2 module.
-      
-   Parameters:
-      this module has no paramters
-   
-   Ports:
-      Inputs:
-         clk:                       clock signal                     
-         rstn:                      negative edge reset
-         fsm_start_i:               start signal
-         fsm_i_less_sizeZ:          i < sizeZ signal
-         fsm_j_less_sizeH:          j < sizeH signal
-         fsm_k_less_size_temp:      k < size_temp signal
-         fsm_k_plus_j_equals_i:     (k+j) == i signal
-         
-      Outputs: 
-         fsm_load_sizeY:            load data to register             
-         fsm_load_sizeZ:            load data to register 
-         fsm_count_up_i:            enables the count up for i
-         fsm_clear_i:               reset the count for i
-         fsm_count_up_j:            enables the count up for j
-         fsm_clear_j:               reset the count for j
-         fsm_count_up_k:            enables the count up for k
-         fsm_clear_k:               reset the count for k
-         fsm_load_temp_z            load data to register 
-         fsm_temp_z_clear:          reset register to zero
-         fsm_temp_h_load:           load data to register 
-         fsm_temp_y_load:           load data to register 
-         fsm_busy:                  tell user that the machine is busy and not ready to work
-         fsm_done:                  tell user that the machine has done calculation and is ready once done return to 0
-         fsm_write:                 tells the output device that the machine is writting the results.
-         
-         
-   Instances:
-      this module has no instances
-   
-   Instance Template:
-   
-      convolucion_p2_fsm
-      "MODULE NAME"
-      (
-         .clk(),
-         .rstn(),
-         .fsm_start_i(),
-         .fsm_i_less_sizeZ(),
-         .fsm_j_less_sizeH(),
-         .fsm_k_less_size_temp(),
-         .fsm_k_plus_j_equals_i(),
-         
-         //OUTPUTS
-         .fsm_load_sizeY(),
-         .fsm_load_sizeZ(),
-         .fsm_count_up_i(),
-         .fsm_clear_i(),
-         .fsm_count_up_j(),
-         .fsm_clear_j(),
-         .fsm_count_up_k(),
-         .fsm_clear_k(),
-         .fsm_load_temp_z(),
-         .fsm_temp_z_clear(),
-         .fsm_temp_h_load(),
-         .fsm_temp_y_load(),
-         .fsm_busy(),
-         .fsm_done(),
-         .fsm_write()
-        
-      );
-
-      
-      
-   Place here any modifications with the format: "(DD/MM/YY): description"
-      
-      (05/05/2024):  convolucion_p2_fsm created. Added description.
-   
-   
-*/
+/******************************************************************
+* Description
+*
+* SystemVerilog FSM template with registered outputs
+*
+* Reset: Async active low
+*
+* Author:   Daniel Perez Montes
+* email :	
+* Date  :   04/may/2024	
+******************************************************************/
 
 module convolucion_p2_fsm 
 (

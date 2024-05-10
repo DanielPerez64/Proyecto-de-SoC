@@ -1,89 +1,6 @@
 /*
-   
-   Author:  Pablo Daniel Perez Montes
-   Email:   TAE2024.7@cinvestav.mx
-   Date:    05/05/2024
-   
-   Module Name:
-      convolucion_p2
-   
-   Description:
-      This module computes a discrete time convolution. H vector is internally stored in an synchronous ROM memory
-      Once the start signal get shot to high, convolucion_p2 will take values stored in a extern RAM or device,   
-      then will elaborate the calculus of each value of Z. It always writes on extern memory block for the Z output.
-      The data will be ready only when the output done is one shotted.
-      
-      User should be careful of overflow. Sizes is fixed by DATA_WIDTH_OUT.
-      
-   Parameters:
-      ADDRESS_WIDTH:       size for the address of vectors Y and H
-      ADDRESS_WIDTH_OUT:   size for the adrress of Z vectors
-      DATA_WIDTH:          size in bits of data in vectors Y and H
-      DATA_WIDTH_OUT:      size in bits for the data Z output
-      TXT_FILE_H:          directory path for the text file of vector H values
-      SIZE_H:              size of the vector H, it must match the number of elements in TXT_FILE_H
-   
-   Ports:
-      Inputs:
-         clk:              clock signal
-         rst:              negative edge reset
-         start_i:          start signal
-         data_y_i:         data from extern device
-         size_y_i:         size of vector Y (number of values the device will take from extern device)
-         
-      Outputs: 
-         data_z_o:         data that will be stored on a extern device  (results for the convolution)
-         mem_z_addr_o:     address for the data output
-         mem_y_addr_o:     address for the data input in vector Y
-         busy_o:           signal for busy device
-         done_o:           tells the user that the calculus is complete (one shot)
-         write:            tells the extern device that will store the vector Z that this device is writting to output
-   
-   Instances:
-      -register
-      -realAdder
-      -realSubstractor
-      -comparatorEqual
-      -comparatorLessThan
-      -rom_sync
-      -convolucion_p2_fsm
-      -multiplicator
-   
-   Instance Template:
-   
-      convolucion_p2 
-         #(
-            .DATA_WIDTH(),
-            .DATA_WIDTH_OUT(),
-            .ADDRESS_WIDTH(),
-            .ADDRESS_WIDTH_OUT(),
-            .TXT_FILE_H(),
-            .SIZE_H()
-         )
-         "MODULE NAME"
-         (
-            .clk(),
-            .rst(),
-            .start_i(),
-            .data_y_i(),
-            .size_y_i(),
-            .data_z_o(),
-            .mem_z_addr_o(),
-            .mem_y_addr_o(),
-            .busy_o(),
-            .done_o(),
-            .write_o()
-         );
 
-      
-      
-   Place here any modifications with the format: "(DD/MM/YY): description"
-      
-      (05/05/2024):  convolucion_p2 created. Added description.
-   
-   
 */
-
 module convolucion_p2
 #(
    //parameters
@@ -180,6 +97,9 @@ logic load_temp_z;
 logic temp_z_clear;
 logic temp_h_load;
 logic temp_y_load;
+//logic fsm_busy;
+//logic fsm_done;
+//logic fsm_write;
 
 //fsm instatiaton
 
@@ -212,7 +132,7 @@ convolucion_p2_fsm   CONVOLUTION_STATE_MACHINE
   
 );
 
-/* ================== DATA PATH ======================= */
+//data path -----------------------------------------
 
 //bring sizeY from input
 register 
@@ -273,8 +193,7 @@ register
       .data_o  (sizeZ)
    );
    
-/* ================== data path for comparators ======================= */
-
+//data path for comparators   
 comparatorLessThan 
    #(
       .DATA_WIDTH   (ADDRESS_WIDTH_OUT)
@@ -311,6 +230,7 @@ comparatorLessThan
    );
 
 // (k+j) equal to i
+
 assign k_fixed = {1'b0,_k};
 assign j_fixed = {1'b0,_j};
 
@@ -335,7 +255,7 @@ comparatorEqual
       .B_i            (_i), 
       .A_equal_B_o    (k_plus_j_equals_i)
    );
-/* ================== data path for counters ======================= */
+//data path for counters
 
 //counter for _i
 realAdder
@@ -389,7 +309,6 @@ register
       .data_i  (next_j),
       .data_o  (_j)
    );
-   
 //counter for _k
 realAdder
    #(
@@ -416,8 +335,7 @@ register
       .data_o  (_k)
    );
 
-/* ================== data path for the convolution algorithm ======================= */
-
+//data path for the convolution algorithm
 register 
    #(
       .DATA_WIDTH (DATA_WIDTH)
@@ -434,7 +352,7 @@ register
 
 assign addrH = _j;
 
-rom_sync
+rom_asynch
    #(
       .DATA_WIDTH(DATA_WIDTH),
       .ADDRESS_WIDTH(ADDRESS_WIDTH),
@@ -499,7 +417,7 @@ register
       .data_o  (temp_z)
    );
 
-/* ================== OUTPUTS ======================= */
+// output wires
 assign mem_y_addr_o  = _k;
 assign mem_z_addr_o  = _i;
 assign data_z_o      = temp_z;

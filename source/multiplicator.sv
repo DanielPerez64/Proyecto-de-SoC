@@ -37,8 +37,8 @@ module multiplicator
    output [DATA_WIDTH_OUT-1:0] product_AB
 );
 
-logic signed [DATA_WIDTH-1:0] temp_A;
-logic signed [DATA_WIDTH-1:0] temp_B;
+logic [DATA_WIDTH-1:0] temp_A;
+logic [DATA_WIDTH-1:0] temp_B;
 logic signed [DATA_WIDTH_OUT-1:0] temp_product;
 
 assign temp_A = A_i;

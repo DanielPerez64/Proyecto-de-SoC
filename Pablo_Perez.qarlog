@@ -1,0 +1,27 @@
+Quartus Prime Archive log --	C:/disen_SoC/TAE_SoC_convolucion_p2/Pablo_Perez.qarlog
+
+Archive:	C:/disen_SoC/TAE_SoC_convolucion_p2/Pablo_Perez.qar
+Date:		Sun May 05 12:03:46 2024
+Quartus Prime		20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/disen_SoC/TAE_SoC_convolucion_p2/TAE_2024_convolucion.qpf
+C:/disen_SoC/TAE_SoC_convolucion_p2/convolucion_p2.qsf
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/comparatorEqual.v
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/comparatorLessThan.v
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucion_p2_TB.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolutionator_fsm.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/multiplicator.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/ram_block.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/realAdder.v
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/realSubstactor.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/register.v
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/simple_dual_port_ram_single_clk_sv.sv
+C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv
+C:/disen_soc/convolution_p2/array_x.txt
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 16 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

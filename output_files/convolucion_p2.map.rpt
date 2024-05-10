@@ -1,0 +1,836 @@
+Analysis & Synthesis report for convolucion_p2
+Thu May 09 21:13:27 2024
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |convolucion_p2|convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: Top-level Entity: |convolucion_p2
+ 16. Parameter Settings for User Entity Instance: register:size_temp_register
+ 17. Parameter Settings for User Entity Instance: realAdder:adder_sizeH_size_temp
+ 18. Parameter Settings for User Entity Instance: realSubstractor:subs_sizeZ
+ 19. Parameter Settings for User Entity Instance: register:size_Z_register
+ 20. Parameter Settings for User Entity Instance: comparatorLessThan:cmp_i_less_than_sizeZ
+ 21. Parameter Settings for User Entity Instance: comparatorLessThan:cmp_j_less_than_sizeH
+ 22. Parameter Settings for User Entity Instance: comparatorLessThan:cmp_k_less_than_size_temp
+ 23. Parameter Settings for User Entity Instance: realAdder:adder_k_plus_j
+ 24. Parameter Settings for User Entity Instance: comparatorEqual:cmp_k_plus_j_equals_i
+ 25. Parameter Settings for User Entity Instance: realAdder:adder_counter_i
+ 26. Parameter Settings for User Entity Instance: register:counter_i_register
+ 27. Parameter Settings for User Entity Instance: realAdder:adder_counter_j
+ 28. Parameter Settings for User Entity Instance: register:counter_j_register
+ 29. Parameter Settings for User Entity Instance: realAdder:adder_counter_k
+ 30. Parameter Settings for User Entity Instance: register:counter_k_register
+ 31. Parameter Settings for User Entity Instance: register:temp_y_register
+ 32. Parameter Settings for User Entity Instance: rom_sync:rom_interna
+ 33. Parameter Settings for User Entity Instance: register:temp_h_register
+ 34. Parameter Settings for User Entity Instance: multiplicator:convolution_multiplicator
+ 35. Parameter Settings for User Entity Instance: realAdder:adder_convolution
+ 36. Parameter Settings for User Entity Instance: register:temp_z_register
+ 37. Port Connectivity Checks: "register:temp_h_register"
+ 38. Port Connectivity Checks: "register:temp_y_register"
+ 39. Port Connectivity Checks: "realAdder:adder_counter_k"
+ 40. Port Connectivity Checks: "realAdder:adder_counter_j"
+ 41. Port Connectivity Checks: "realAdder:adder_counter_i"
+ 42. Port Connectivity Checks: "realAdder:adder_k_plus_j"
+ 43. Port Connectivity Checks: "register:size_Z_register"
+ 44. Port Connectivity Checks: "realSubstractor:subs_sizeZ"
+ 45. Port Connectivity Checks: "realAdder:adder_sizeH_size_temp"
+ 46. Port Connectivity Checks: "register:size_temp_register"
+ 47. Post-Synthesis Netlist Statistics for Top Partition
+ 48. Elapsed Time Per Partition
+ 49. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Thu May 09 21:13:27 2024       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; convolucion_p2                              ;
+; Top-level Entity Name           ; convolucion_p2                              ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 87                                          ;
+; Total pins                      ; 46                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 1                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; convolucion_p2     ; convolucion_p2     ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 12          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-12        ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                      ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+; source/sync_rom.sv               ; yes             ; User SystemVerilog HDL File  ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv            ;         ;
+; source/register.v                ; yes             ; User Verilog HDL File        ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/register.v             ;         ;
+; source/realSubstactor.sv         ; yes             ; User SystemVerilog HDL File  ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/realSubstactor.sv      ;         ;
+; source/realAdder.v               ; yes             ; User Verilog HDL File        ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/realAdder.v            ;         ;
+; source/multiplicator.sv          ; yes             ; User SystemVerilog HDL File  ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/multiplicator.sv       ;         ;
+; source/convolutionator_fsm.sv    ; yes             ; User SystemVerilog HDL File  ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolutionator_fsm.sv ;         ;
+; source/convolucionador_p2.sv     ; yes             ; User SystemVerilog HDL File  ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv  ;         ;
+; source/comparatorLessThan.v      ; yes             ; User Verilog HDL File        ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/comparatorLessThan.v   ;         ;
+; source/comparatorEqual.v         ; yes             ; User Verilog HDL File        ; C:/disen_SoC/TAE_SoC_convolucion_p2/source/comparatorEqual.v      ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 51        ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 78        ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 13        ;
+;     -- 5 input functions                    ; 12        ;
+;     -- 4 input functions                    ; 9         ;
+;     -- <=3 input functions                  ; 44        ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 87        ;
+;                                             ;           ;
+; I/O pins                                    ; 46        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 1         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 87        ;
+; Total fan-out                               ; 691       ;
+; Average fan-out                             ; 2.68      ;
++---------------------------------------------+-----------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                           ;
++---------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node                        ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                          ; Entity Name        ; Library Name ;
++---------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------+--------------------+--------------+
+; |convolucion_p2                                   ; 78 (0)              ; 87 (0)                    ; 0                 ; 1          ; 46   ; 0            ; |convolucion_p2                                              ; convolucion_p2     ; work         ;
+;    |comparatorEqual:cmp_k_plus_j_equals_i|        ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|comparatorEqual:cmp_k_plus_j_equals_i        ; comparatorEqual    ; work         ;
+;    |comparatorLessThan:cmp_i_less_than_sizeZ|     ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|comparatorLessThan:cmp_i_less_than_sizeZ     ; comparatorLessThan ; work         ;
+;    |comparatorLessThan:cmp_k_less_than_size_temp| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|comparatorLessThan:cmp_k_less_than_size_temp ; comparatorLessThan ; work         ;
+;    |convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE| ; 14 (14)             ; 30 (30)                   ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE ; convolucion_p2_fsm ; work         ;
+;    |multiplicator:convolution_multiplicator|      ; 0 (0)               ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |convolucion_p2|multiplicator:convolution_multiplicator      ; multiplicator      ; work         ;
+;    |realAdder:adder_convolution|                  ; 16 (16)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|realAdder:adder_convolution                  ; realAdder          ; work         ;
+;    |realAdder:adder_counter_i|                    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|realAdder:adder_counter_i                    ; realAdder          ; work         ;
+;    |realAdder:adder_counter_k|                    ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|realAdder:adder_counter_k                    ; realAdder          ; work         ;
+;    |realAdder:adder_k_plus_j|                     ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|realAdder:adder_k_plus_j                     ; realAdder          ; work         ;
+;    |realSubstractor:subs_sizeZ|                   ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|realSubstractor:subs_sizeZ                   ; realSubstractor    ; work         ;
+;    |register:counter_i_register|                  ; 7 (7)               ; 6 (6)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:counter_i_register                  ; register           ; work         ;
+;    |register:counter_j_register|                  ; 6 (6)               ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:counter_j_register                  ; register           ; work         ;
+;    |register:counter_k_register|                  ; 6 (6)               ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:counter_k_register                  ; register           ; work         ;
+;    |register:size_Z_register|                     ; 1 (1)               ; 6 (6)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:size_Z_register                     ; register           ; work         ;
+;    |register:size_temp_register|                  ; 0 (0)               ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:size_temp_register                  ; register           ; work         ;
+;    |register:temp_h_register|                     ; 0 (0)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:temp_h_register                     ; register           ; work         ;
+;    |register:temp_y_register|                     ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:temp_y_register                     ; register           ; work         ;
+;    |register:temp_z_register|                     ; 1 (1)               ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|register:temp_z_register                     ; register           ; work         ;
+;    |rom_sync:rom_interna|                         ; 3 (3)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |convolucion_p2|rom_sync:rom_interna                         ; rom_sync           ; work         ;
++---------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------+--------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary ;
++-------------------------------+--------------+
+; Statistic                     ; Number Used  ;
++-------------------------------+--------------+
+; Independent 9x9               ; 1            ;
+; Total number of DSP blocks    ; 1            ;
+;                               ;              ;
+; Fixed Point Signed Multiplier ; 1            ;
++-------------------------------+--------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |convolucion_p2|convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state                                                                                                                                                                                                      ;
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+----------+----------+----------+----------+----------+----------+----------+----------+------------+
+; Name       ; state.S23 ; state.S22 ; state.S21 ; state.S20 ; state.S19 ; state.S18 ; state.S17 ; state.S16 ; state.S15 ; state.S14 ; state.S13 ; state.S12 ; state.S11 ; state.S10 ; state.S9 ; state.S8 ; state.S7 ; state.S6 ; state.S5 ; state.S4 ; state.S3 ; state.S2 ; state.IDLE ;
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+----------+----------+----------+----------+----------+----------+----------+----------+------------+
+; state.IDLE ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0          ;
+; state.S2   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1          ;
+; state.S3   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1          ;
+; state.S4   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1          ;
+; state.S5   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1          ;
+; state.S6   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S7   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S8   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S9   ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S10  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S11  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S12  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S13  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S14  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S15  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S16  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S17  ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S18  ; 0         ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S19  ; 0         ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S20  ; 0         ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S21  ; 0         ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S22  ; 0         ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.S23  ; 1         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+----------+----------+----------+----------+----------+----------+----------+----------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                     ;
++-------------------------------------------------------------+--------------------------------------------------------------------------+
+; Register name                                               ; Reason for Removal                                                       ;
++-------------------------------------------------------------+--------------------------------------------------------------------------+
+; sizeH[0..4]                                                 ; Stuck at GND due to stuck port data_in                                   ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_load_sizeZ ; Stuck at VCC due to stuck port data_in                                   ;
+; rom_sync:rom_interna|data_o[4..7]                           ; Merged with rom_sync:rom_interna|data_o[3]                               ;
+; register:temp_h_register|data_o[3..6]                       ; Merged with register:temp_h_register|data_o[7]                           ;
+; rom_sync:rom_interna|data_o[3]                              ; Stuck at GND due to stuck port data_in                                   ;
+; register:temp_h_register|data_o[7]                          ; Stuck at GND due to stuck port data_in                                   ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state~4        ; Lost fanout                                                              ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state~5        ; Lost fanout                                                              ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state~6        ; Lost fanout                                                              ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state~7        ; Lost fanout                                                              ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state~8        ; Lost fanout                                                              ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S15      ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_load_temp_z ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S21      ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_count_up_i  ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S19      ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_count_up_k  ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S20      ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_count_up_j  ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S10      ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_temp_h_load ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S13      ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_temp_y_load ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|state.S3       ; Merged with convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_load_sizeY  ;
+; Total Number of Removed Registers = 28                      ;                                                                          ;
++-------------------------------------------------------------+--------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                         ;
++--------------------------------+---------------------------+----------------------------------------+
+; Register name                  ; Reason for Removal        ; Registers Removed due to This Register ;
++--------------------------------+---------------------------+----------------------------------------+
+; rom_sync:rom_interna|data_o[3] ; Stuck at GND              ; register:temp_h_register|data_o[7]     ;
+;                                ; due to stuck port data_in ;                                        ;
++--------------------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 87    ;
+; Number of registers using Synchronous Clear  ; 16    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 84    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 48    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------+
+; Inverted Register Statistics                                            ;
++---------------------------------------------------------------+---------+
+; Inverted Register                                             ; Fan out ;
++---------------------------------------------------------------+---------+
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_temp_z_clear ; 1       ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_clear_i      ; 1       ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_clear_k      ; 1       ;
+; convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE|fsm_clear_j      ; 1       ;
+; Total number of inverted registers = 4                        ;         ;
++---------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |convolucion_p2|register:temp_z_register|data_o[14]   ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |convolucion_p2|register:counter_i_register|data_o[1] ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |convolucion_p2|register:counter_k_register|data_o[0] ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |convolucion_p2|register:counter_j_register|data_o[0] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |convolucion_p2 ;
++-------------------+-----------------------------------------+------------------+
+; Parameter Name    ; Value                                   ; Type             ;
++-------------------+-----------------------------------------+------------------+
+; DATA_WIDTH        ; 8                                       ; Signed Integer   ;
+; DATA_WIDTH_OUT    ; 16                                      ; Signed Integer   ;
+; ADDRESS_WIDTH     ; 5                                       ; Signed Integer   ;
+; ADDRESS_WIDTH_OUT ; 6                                       ; Signed Integer   ;
+; TXT_FILE_H        ; C:/disen_SoC/convolution_p2/array_x.txt ; String           ;
+; SIZE_H            ; 32                                      ; Signed Integer   ;
++-------------------+-----------------------------------------+------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:size_temp_register ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realAdder:adder_sizeH_size_temp ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realSubstractor:subs_sizeZ ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:size_Z_register ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: comparatorLessThan:cmp_i_less_than_sizeZ ;
++----------------+-------+--------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                         ;
++----------------+-------+--------------------------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                                               ;
++----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: comparatorLessThan:cmp_j_less_than_sizeH ;
++----------------+-------+--------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                         ;
++----------------+-------+--------------------------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                               ;
++----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: comparatorLessThan:cmp_k_less_than_size_temp ;
++----------------+-------+------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                             ;
++----------------+-------+------------------------------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                                   ;
++----------------+-------+------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realAdder:adder_k_plus_j ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: comparatorEqual:cmp_k_plus_j_equals_i ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realAdder:adder_counter_i ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:counter_i_register ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; DATA_WIDTH     ; 6     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realAdder:adder_counter_j ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:counter_j_register ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realAdder:adder_counter_k ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:counter_k_register ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; DATA_WIDTH     ; 5     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:temp_y_register ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DATA_WIDTH     ; 8     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: rom_sync:rom_interna         ;
++----------------+-----------------------------------------+----------------+
+; Parameter Name ; Value                                   ; Type           ;
++----------------+-----------------------------------------+----------------+
+; DATA_WIDTH     ; 8                                       ; Signed Integer ;
+; ADDRESS_WIDTH  ; 5                                       ; Signed Integer ;
+; TXT_FILE       ; C:/disen_SoC/convolution_p2/array_x.txt ; String         ;
++----------------+-----------------------------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:temp_h_register ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DATA_WIDTH     ; 8     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: multiplicator:convolution_multiplicator ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; DATA_WIDTH     ; 8     ; Signed Integer                                              ;
+; DATA_WIDTH_OUT ; 16    ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: realAdder:adder_convolution ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:temp_z_register ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "register:temp_h_register" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; clrh ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "register:temp_y_register" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; clrh ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "realAdder:adder_counter_k" ;
++------------+-------+----------+-----------------------+
+; Port       ; Type  ; Severity ; Details               ;
++------------+-------+----------+-----------------------+
+; re_A[4..1] ; Input ; Info     ; Stuck at GND          ;
+; re_A[0]    ; Input ; Info     ; Stuck at VCC          ;
++------------+-------+----------+-----------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "realAdder:adder_counter_j" ;
++------------+-------+----------+-----------------------+
+; Port       ; Type  ; Severity ; Details               ;
++------------+-------+----------+-----------------------+
+; re_A[4..1] ; Input ; Info     ; Stuck at GND          ;
+; re_A[0]    ; Input ; Info     ; Stuck at VCC          ;
++------------+-------+----------+-----------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "realAdder:adder_counter_i" ;
++------------+-------+----------+-----------------------+
+; Port       ; Type  ; Severity ; Details               ;
++------------+-------+----------+-----------------------+
+; re_A[5..1] ; Input ; Info     ; Stuck at GND          ;
+; re_A[0]    ; Input ; Info     ; Stuck at VCC          ;
++------------+-------+----------+-----------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "realAdder:adder_k_plus_j" ;
++---------+-------+----------+-------------------------+
+; Port    ; Type  ; Severity ; Details                 ;
++---------+-------+----------+-------------------------+
+; re_A[5] ; Input ; Info     ; Stuck at GND            ;
+; re_B[5] ; Input ; Info     ; Stuck at GND            ;
++---------+-------+----------+-------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "register:size_Z_register" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; clrh ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++--------------------------------------------------------+
+; Port Connectivity Checks: "realSubstractor:subs_sizeZ" ;
++------------+-------+----------+------------------------+
+; Port       ; Type  ; Severity ; Details                ;
++------------+-------+----------+------------------------+
+; re_B[5..1] ; Input ; Info     ; Stuck at GND           ;
+; re_B[0]    ; Input ; Info     ; Stuck at VCC           ;
++------------+-------+----------+------------------------+
+
+
++-------------------------------------------------------------+
+; Port Connectivity Checks: "realAdder:adder_sizeH_size_temp" ;
++---------+-------+----------+--------------------------------+
+; Port    ; Type  ; Severity ; Details                        ;
++---------+-------+----------+--------------------------------+
+; re_A[5] ; Input ; Info     ; Stuck at GND                   ;
+; re_B[5] ; Input ; Info     ; Stuck at GND                   ;
++---------+-------+----------+--------------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "register:size_temp_register" ;
++------+-------+----------+-------------------------------+
+; Port ; Type  ; Severity ; Details                       ;
++------+-------+----------+-------------------------------+
+; clrh ; Input ; Info     ; Stuck at GND                  ;
++------+-------+----------+-------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 87                          ;
+;     CLR               ; 36                          ;
+;     ENA CLR           ; 32                          ;
+;     ENA CLR SCLR      ; 16                          ;
+;     plain             ; 3                           ;
+; arriav_lcell_comb     ; 78                          ;
+;     arith             ; 22                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 21                          ;
+;     normal            ; 56                          ;
+;         1 data inputs ; 5                           ;
+;         2 data inputs ; 10                          ;
+;         3 data inputs ; 7                           ;
+;         4 data inputs ; 9                           ;
+;         5 data inputs ; 12                          ;
+;         6 data inputs ; 13                          ;
+; arriav_mac            ; 1                           ;
+; boundary_port         ; 46                          ;
+;                       ;                             ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 1.74                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Thu May 09 21:13:18 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off TAE_2024_convolucion -c convolucion_p2
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file source/sync_rom.sv
+    Info (12023): Found entity 1: rom_sync File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv Line: 12
+Info (12021): Found 1 design units, including 1 entities, in source file source/simple_dual_port_ram_single_clk_sv.sv
+    Info (12023): Found entity 1: simple_dual_port_ram_single_clk_sv File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/simple_dual_port_ram_single_clk_sv.sv Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file source/register.v
+    Info (12023): Found entity 1: register File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/register.v Line: 47
+Info (12021): Found 1 design units, including 1 entities, in source file source/realsubstactor.sv
+    Info (12023): Found entity 1: realSubstractor File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/realSubstactor.sv Line: 49
+Info (12021): Found 1 design units, including 1 entities, in source file source/realadder.v
+    Info (12023): Found entity 1: realAdder File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/realAdder.v Line: 49
+Info (12021): Found 1 design units, including 1 entities, in source file source/ram_block.sv
+    Info (12023): Found entity 1: simple_ram_block File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/ram_block.sv Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file source/multiplicator.sv
+    Info (12023): Found entity 1: multiplicator File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/multiplicator.sv Line: 30
+Info (12021): Found 1 design units, including 1 entities, in source file source/convolutionator_fsm.sv
+    Info (12023): Found entity 1: convolucion_p2_fsm File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolutionator_fsm.sv Line: 88
+Info (12021): Found 1 design units, including 1 entities, in source file source/convolucionador_p2.sv
+    Info (12023): Found entity 1: convolucion_p2 File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 87
+Info (12021): Found 1 design units, including 1 entities, in source file source/convolucion_p2_tb.sv
+    Info (12023): Found entity 1: convo_p2_TB File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucion_p2_TB.sv Line: 38
+Info (12021): Found 1 design units, including 1 entities, in source file source/comparatorlessthan.v
+    Info (12023): Found entity 1: comparatorLessThan File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/comparatorLessThan.v Line: 47
+Info (12021): Found 1 design units, including 1 entities, in source file source/comparatorequal.v
+    Info (12023): Found entity 1: comparatorEqual File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/comparatorEqual.v Line: 48
+Info (12127): Elaborating entity "convolucion_p2" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at convolucionador_p2.sv(233): truncated value with size 32 to match size of target (5) File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 233
+Info (12128): Elaborating entity "convolucion_p2_fsm" for hierarchy "convolucion_p2_fsm:CONVOLUTION_STATE_MACHINE" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 213
+Info (12128): Elaborating entity "register" for hierarchy "register:size_temp_register" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 230
+Info (12128): Elaborating entity "realAdder" for hierarchy "realAdder:adder_sizeH_size_temp" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 248
+Info (12128): Elaborating entity "realSubstractor" for hierarchy "realSubstractor:subs_sizeZ" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 259
+Info (12128): Elaborating entity "register" for hierarchy "register:size_Z_register" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 274
+Info (12128): Elaborating entity "comparatorLessThan" for hierarchy "comparatorLessThan:cmp_i_less_than_sizeZ" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 287
+Info (12128): Elaborating entity "comparatorLessThan" for hierarchy "comparatorLessThan:cmp_j_less_than_sizeH" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 299
+Info (12128): Elaborating entity "comparatorEqual" for hierarchy "comparatorEqual:cmp_k_plus_j_equals_i" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 337
+Info (12128): Elaborating entity "realAdder" for hierarchy "realAdder:adder_counter_j" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 377
+Info (12128): Elaborating entity "register" for hierarchy "register:temp_y_register" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 433
+Info (12128): Elaborating entity "rom_sync" for hierarchy "rom_sync:rom_interna" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 448
+Warning (10850): Verilog HDL warning at sync_rom.sv(26): number of words (6) in memory file does not match the number of elements in the address range [0:31] File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv Line: 26
+Warning (10030): Net "rom.data_a" at sync_rom.sv(23) has no driver or initial value, using a default initial value '0' File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv Line: 23
+Warning (10030): Net "rom.waddr_a" at sync_rom.sv(23) has no driver or initial value, using a default initial value '0' File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv Line: 23
+Warning (10030): Net "rom.we_a" at sync_rom.sv(23) has no driver or initial value, using a default initial value '0' File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv Line: 23
+Info (12128): Elaborating entity "multiplicator" for hierarchy "multiplicator:convolution_multiplicator" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 475
+Info (12128): Elaborating entity "realAdder" for hierarchy "realAdder:adder_convolution" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 486
+Info (12128): Elaborating entity "register" for hierarchy "register:temp_z_register" File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/convolucionador_p2.sv Line: 500
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "rom_sync:rom_interna|rom" is uninferred due to inappropriate RAM size File: C:/disen_SoC/TAE_SoC_convolucion_p2/source/sync_rom.sv Line: 23
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/disen_SoC/TAE_SoC_convolucion_p2/db/convolucion_p2.ram0_rom_sync_fb0bdb8a.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 5 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 160 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 16 input pins
+    Info (21059): Implemented 30 output pins
+    Info (21061): Implemented 113 logic cells
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 4854 megabytes
+    Info: Processing ended: Thu May 09 21:13:27 2024
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:13
+
+

@@ -1,0 +1,193 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "data_z_o[0]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[1]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[2]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[3]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[4]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[5]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[6]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[7]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[8]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[9]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[10]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[11]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[12]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[13]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[14]",
+					"strict" : false
+				},
+				{
+					"name" : "data_z_o[15]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_z_addr_o[0]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_z_addr_o[1]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_z_addr_o[2]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_z_addr_o[3]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_z_addr_o[4]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_z_addr_o[5]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_y_addr_o[0]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_y_addr_o[1]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_y_addr_o[2]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_y_addr_o[3]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_y_addr_o[4]",
+					"strict" : false
+				},
+				{
+					"name" : "busy_o",
+					"strict" : false
+				},
+				{
+					"name" : "done_o",
+					"strict" : false
+				},
+				{
+					"name" : "write_o",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "start_i",
+					"strict" : false
+				},
+				{
+					"name" : "size_y_i[4]",
+					"strict" : false
+				},
+				{
+					"name" : "size_y_i[3]",
+					"strict" : false
+				},
+				{
+					"name" : "size_y_i[2]",
+					"strict" : false
+				},
+				{
+					"name" : "size_y_i[0]",
+					"strict" : false
+				},
+				{
+					"name" : "size_y_i[1]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[0]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[1]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[2]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[3]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[4]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[5]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[6]",
+					"strict" : false
+				},
+				{
+					"name" : "data_y_i[7]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
