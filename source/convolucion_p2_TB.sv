@@ -1,5 +1,37 @@
 /*
-   Convolution p2 testbench
+   
+   Author:  Pablo Daniel Perez Montes
+   Email:   TAE2024.7@cinvestav.mx
+   Date:    05/05/2024
+   
+   Module Name:
+      convo_p2_TB
+   
+   Description:
+      Testbench for the PROJECT 2 Convolution. Resets the top module then one shot start signal.
+      The convolucion_p2 block DUT will take values stored in MEM_Y, then it will write on MEM_Z the
+      product of each operation.
+      
+   Parameters:
+      ADDRESS_WIDTH:    size for the address of vectors Y and H
+      ADDRESS_WIDTH_Z:  size for the Z vectors
+      DATA_WIDTH:       size in bits of data in vectors Y and H
+      DATA_WIDTH_OUT:   size in bits of data for the vector Z
+      TXT_FILE_H:       directory path for the text file of vector H values
+      TXT_FILE_Y:       directory path for the text file of vector Y values
+      SIZE_H:           size of the vector H, it must match the number of elements in TXT_FILE_H
+      SIZE_Y:           size of the vector Y, it must match the number of elements in TXT_FILE_Y
+      
+   Instances:                                   Name of Instance:
+      -convolucion_p2                           DUT
+      -simple_dual_port_ram_single_clk_sv       MEM_Y
+      -simple_ram_block                         MEM_Z
+      
+   Place here any modifications with the format: "(DD/MM/YY): description"
+      
+      (05/05/2024):  convo_p2_TB created. Added description.
+   
+   
 */
 `timescale 1ns/1ns
 
